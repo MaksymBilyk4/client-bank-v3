@@ -52,12 +52,12 @@ public class CustomerController {
     }
 
     @PostMapping("/{id}/accounts")
-    public void createAccount (
+    public Account createAccount (
             @Valid @RequestBody AccountRequestDto accountRequestDto,
             @PathVariable (name = "id") Long id
     ) {
         Account account = accountRequestDtoMapper.convertToEntity(accountRequestDto);
-        customerService.createAccount(account, id);
+        return customerService.createAccount(account, id);
     }
 
     @PutMapping

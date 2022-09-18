@@ -1,8 +1,14 @@
 package com.bank.server.mapper;
 
+import com.bank.server.dao.EmployerRepository;
 import com.bank.server.dto.CustomerRequestDto;
 import com.bank.server.entity.Customer;
+import com.bank.server.entity.Employer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CustomerRequestDtoMapper extends DtoMapperFacade<Customer, CustomerRequestDto>{
@@ -10,8 +16,15 @@ public class CustomerRequestDtoMapper extends DtoMapperFacade<Customer, Customer
         super(Customer.class, CustomerRequestDto.class);
     }
 
-    @Override
-    protected void decorateDto(CustomerRequestDto dto, Customer entity) {
+    @Autowired
+    EmployerRepository employerRepository;
 
+    @Override
+    protected void decorateEntity(Customer entity, CustomerRequestDto dto) {
+        entity.setId(dto.getId());
+        entity.setName(dto.getName());
+        entity.setEmail(dto.getEmail());
+        entity.setPassword(dto.getPassword());
+        entity.setPhoneNumber(dto.getPhoneNumber());
     }
 }

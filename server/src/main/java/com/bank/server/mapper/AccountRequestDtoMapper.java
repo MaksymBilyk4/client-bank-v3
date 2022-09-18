@@ -15,6 +15,7 @@ public class AccountRequestDtoMapper extends DtoMapperFacade<Account, AccountReq
     @Override
     protected void decorateEntity(Account entity, AccountRequestDto dto) {
         entity.setCurrency(dto.getCurrency());
+        entity.setNumber(UUID.randomUUID().toString());
         entity.setBalance(dto.getBalance());
     }
 }

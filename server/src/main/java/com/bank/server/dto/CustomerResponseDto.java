@@ -29,6 +29,9 @@ public class CustomerResponseDto {
 
     private Set<AccountResponseDto> accounts = new HashSet<>();
 
+    @JsonProperty("employers")
+    private Set<Long> employersIds = new HashSet<>();
+
     @Override
     public String toString() {
         return "CustomerDto{" +
@@ -37,7 +40,8 @@ public class CustomerResponseDto {
                 ", age=" + age +
                 ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", accounts=" + accounts +
+                ", accounts=" + accounts + '\'' +
+                ", employers=" + employersIds +
                 '}';
     }
 }

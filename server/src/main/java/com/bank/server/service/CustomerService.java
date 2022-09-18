@@ -4,10 +4,12 @@ import com.bank.server.dao.AccountRepository;
 import com.bank.server.dao.CustomerRepository;
 import com.bank.server.entity.Account;
 import com.bank.server.entity.Customer;
+import com.bank.server.entity.Employer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -29,6 +31,14 @@ public class CustomerService {
     }
 
     public void deleteById (Long id) {
+        Optional<Customer> customer = customerRepository.findById(id);
+        if (customer.isPresent()) {
+            Customer c = customer.get();
+
+            for (Employer e : new HashSet<Employer>(c.getEmployers())) {
+                c.removeEmployer(e);
+            }
+        }
         customerRepository.deleteById(id);
     }
 
@@ -42,11 +52,12 @@ public class CustomerService {
     }
 
 
-    public void createAccount (Account account, Long id) {
+    public Account createAccount (Account account, Long id) {
         Optional<Customer> customer = findById(id);
         customer.get().addAccount(account);
-        account.setNumber(UUID.randomUUID().toString());
         account.setCustomer(customer.get());
-        accountRepository.save(account);
+        return accountRepository.save(account);
     }
+
+
 }

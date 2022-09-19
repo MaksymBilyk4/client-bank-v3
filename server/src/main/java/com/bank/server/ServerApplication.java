@@ -8,11 +8,15 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.EntityGraph;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.Entity;
 import java.util.List;
+import java.util.Optional;
 
 @SpringBootApplication
+@EnableJpaAuditing
 public class ServerApplication implements ApplicationRunner {
 
     public static void main(String[] args) {

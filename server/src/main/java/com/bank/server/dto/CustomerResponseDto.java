@@ -1,11 +1,14 @@
 package com.bank.server.dto;
 
+import com.bank.server.utils.CustomDateSerializer;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,6 +30,12 @@ public class CustomerResponseDto {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
+    @JsonSerialize(using = CustomDateSerializer.class)
+    private Date creationDate;
+
+    @JsonSerialize(using = CustomDateSerializer.class)
+    private Date lastModifiedDate;
+
     private Set<AccountResponseDto> accounts = new HashSet<>();
 
     @JsonProperty("employers")
@@ -34,14 +43,17 @@ public class CustomerResponseDto {
 
     @Override
     public String toString() {
-        return "CustomerDto{" +
+        return "CustomerResponseDto{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", age=" + age +
                 ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", accounts=" + accounts + '\'' +
-                ", employers=" + employersIds +
+                ", password='" + password + '\'' +
+                ", creationDate=" + creationDate +
+                ", lastModifiedDate=" + lastModifiedDate +
+                ", accounts=" + accounts +
+                ", employersIds=" + employersIds +
                 '}';
     }
 }

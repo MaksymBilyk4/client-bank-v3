@@ -34,6 +34,17 @@ public class CustomerController {
                 .collect(Collectors.toList());
     }
 
+    @GetMapping("/{pageSize}/{pageNumber}")
+    public List<CustomerResponseDto> findAll(
+            @PathVariable("pageSize") int pageSize,
+            @PathVariable("pageNumber") int pageNumber
+    ) {
+        List<Customer> customers = customerService.findAll(pageSize, pageNumber);
+        return customers.stream()
+                .map(customerResponseDtoMapper::convertToDto)
+                .collect(Collectors.toList());
+    }
+
     @GetMapping("/{id}")
     public Optional<CustomerResponseDto> findById(@PathVariable(name = "id") Long id) {
         return customerService.findById(id)

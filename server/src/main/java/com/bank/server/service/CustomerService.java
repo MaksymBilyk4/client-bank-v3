@@ -6,13 +6,16 @@ import com.bank.server.entity.Account;
 import com.bank.server.entity.Customer;
 import com.bank.server.entity.Employer;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 @Transactional
@@ -59,5 +62,11 @@ public class CustomerService {
         return accountRepository.save(account);
     }
 
+    public List<Customer> findAll (int pageSize, int pageNumber) {
+        Sort sort = Sort.by(new Sort.Order(Sort.Direction.ASC, "id"));
+        Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
+        Page<Customer> customerPage = customerRepository.findAll(pageable);
+        return customerPage.toList();
+    }
 
 }

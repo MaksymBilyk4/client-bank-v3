@@ -13,15 +13,15 @@ spring:
 ---
 spring:
   profiles:
-    active: prod
+    active: dev
 
 ---
 spring:
   sql:
     init:
       mode: always
-      data-locations: classpath:data-h2.sql
-      schema-locations: classpath:schema-h2.sql
+      data-locations: classpath:data.sql
+#      schema-locations: classpath:schema.sql
   datasource:
     url: jdbc:h2:mem:testdb
     username: sa
@@ -29,6 +29,9 @@ spring:
     driver-class-name: org.h2.Driver
   jpa:
     defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: create-drop
+    generate-ddl: true
   config:
     activate:
       on-profile: dev

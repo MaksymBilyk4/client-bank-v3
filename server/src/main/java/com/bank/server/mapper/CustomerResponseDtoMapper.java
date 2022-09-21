@@ -2,6 +2,7 @@ package com.bank.server.mapper;
 
 import com.bank.server.dto.AccountResponseDto;
 import com.bank.server.dto.CustomerResponseDto;
+import com.bank.server.entity.Account;
 import com.bank.server.entity.Customer;
 import com.bank.server.entity.Employer;
 import org.springframework.stereotype.Service;
@@ -15,8 +16,8 @@ public class CustomerResponseDtoMapper extends DtoMapperFacade<Customer, Custome
 
     @Override
     protected void decorateDto(CustomerResponseDto dto, Customer entity) {
-        for (AccountResponseDto account: dto.getAccounts()) {
-            account.setCustomerId(entity.getId());
+        for (Account account : entity.getAccounts()) {
+            dto.getAccountsIds().add(account.getId());
         }
         for (Employer employer : entity.getEmployers()) {
             dto.getEmployersIds().add(employer.getId());

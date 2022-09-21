@@ -36,7 +36,8 @@ public class CustomerResponseDto {
     @JsonSerialize(using = CustomDateSerializer.class)
     private Date lastModifiedDate;
 
-    private Set<AccountResponseDto> accounts = new HashSet<>();
+    @JsonProperty("accounts")
+    private Set<Long> accountsIds = new HashSet<>();
 
     @JsonProperty("employers")
     private Set<Long> employersIds = new HashSet<>();
@@ -52,7 +53,7 @@ public class CustomerResponseDto {
                 ", password='" + password + '\'' +
                 ", creationDate=" + creationDate +
                 ", lastModifiedDate=" + lastModifiedDate +
-                ", accounts=" + accounts +
+                ", accounts=" + accountsIds +
                 ", employersIds=" + employersIds +
                 '}';
     }

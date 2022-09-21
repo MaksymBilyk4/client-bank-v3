@@ -19,7 +19,7 @@ public class AccountResponseDto {
 
     private String number;
 
-    @JsonProperty("customer")
+    @JsonProperty("customerId")
     private Long customerId;
 
     @Override

@@ -24,9 +24,8 @@ export const createAccount = (customerId: number | undefined, currency: string, 
         try {
             dispatch({type: AccountActionTypes.ACCOUNT_REQUEST});
             const response = await axios.post(`${process.env.REACT_APP_API_URL}customers/${customerId}/account`, {
-                customerId,
                 currency,
-                balance
+                balance,
             });
             console.log(response);
             dispatch({type: AccountActionTypes.CREATE_ACCOUNT_SUCCESS});
@@ -72,7 +71,7 @@ export const transfer = (toAccount: string, fromAccount: string, amount: number)
     async (dispatch: Dispatch<AccountAction>) => {
         try {
             dispatch({type: AccountActionTypes.ACCOUNT_REQUEST});
-            const response = await axios.put(`${process.env.REACT_APP_API_URL}accounts/transfer?toNumber=${toAccount}&fromNumber=${fromAccount}&amount=${amount}`);
+            const response = await axios.put(`${process.env.REACT_APP_API_URL}accounts/transfer?from=${fromAccount}&to=${toAccount}&amount=${amount}`);
             console.log(response);
             dispatch({type: AccountActionTypes.TRANSFER_MONEY_SUCCESS});
         } catch (e) {

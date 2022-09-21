@@ -18,14 +18,20 @@ const UpdateCustomer: FC = () => {
     const [email, setEmail] = useState<string>("");
     const [age, setAge] = useState<number>(0);
     const [customer, setCustomer] = useState<Customer | null>(null);
+    const [password, setPassword] = useState<string>("");
+    const [phoneNumber, setPhoneNumber] = useState<string>("");
 
     const handleCustomer = (e: React.ChangeEvent<HTMLSelectElement>) => setId(+e);
     const onNameChange = (e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value);
     const onEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value);
     const onAgeChange = (e: React.ChangeEvent<HTMLInputElement>) => setAge(+e.target.value);
+    const onPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value);
+    const onPhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => setPhoneNumber(e.target.value);
+
 
     const fetchCustomer = async (e: React.MouseEvent<HTMLButtonElement>) => {
         const response = await getCustomerById(id);
+        console.log(response)
         // @ts-ignore
         setCustomer(response);
     };
@@ -36,7 +42,9 @@ const UpdateCustomer: FC = () => {
             name || customer?.name,
             email || customer?.email,
             age || customer?.age,
-            customer?.accounts || []
+            customer?.accounts || [],
+            password || customer?.password,
+            phoneNumber || customer?.phoneNumber
         );
         getCustomers();
     };
@@ -106,6 +114,26 @@ const UpdateCustomer: FC = () => {
                                onChange={onAgeChange}
                                placeholder="Enter customer`s age"
                                type={"number"}
+                        />
+                    </Form.Item>
+
+                    <Form.Item label="Password" name={"password"} rules={[rules.required('Please input customer`s password')]}>
+                        <Input value={password}
+                               style={{width: "100%"}}
+                               onChange={onPasswordChange}
+                               placeholder="Enter customer`s password"
+                               type={"text"}
+                               min={3}
+                        />
+                    </Form.Item>
+
+                    <Form.Item label="Phone Number" name={"phone_number"} rules={[rules.required('Please input customer`s phone nuber')]}>
+                        <Input value={phoneNumber}
+                               style={{width: "100%"}}
+                               onChange={onPhoneNumberChange}
+                               placeholder="Enter customer`s phone number"
+                               type={"text"}
+                               min={3}
                         />
                     </Form.Item>
 

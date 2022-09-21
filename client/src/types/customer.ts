@@ -6,6 +6,8 @@ export interface Customer {
     email: string,
     age: number,
     accounts: Account[],
+    phoneNumber: string,
+    password: string
 }
 
 export interface CustomerState {

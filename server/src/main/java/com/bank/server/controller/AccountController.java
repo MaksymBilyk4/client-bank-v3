@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/accounts")
 @RequiredArgsConstructor
@@ -42,12 +43,6 @@ public class AccountController {
                 .map(accountResponseDtoMapper::convertToDto);
     }
 
-
-    @DeleteMapping("/{id}")
-    public void deleteById (@PathVariable (name = "id") Long id) {
-        accountService.deleteById(id);
-    }
-
     @PutMapping("/withdraw")
     public void withdrawMoney (
             @RequestParam (name = "number") String number,
@@ -64,7 +59,7 @@ public class AccountController {
         accountService.upMoney(number, amount);
     }
 
-    @PutMapping("transfer")
+    @PutMapping("/transfer")
     public void transferMoney (
             @RequestParam (name = "from") String from,
             @RequestParam (name = "to") String to,

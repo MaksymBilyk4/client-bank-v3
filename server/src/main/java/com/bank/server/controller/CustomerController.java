@@ -8,6 +8,7 @@ import com.bank.server.entity.Customer;
 import com.bank.server.mapper.AccountRequestDtoMapper;
 import com.bank.server.mapper.CustomerRequestDtoMapper;
 import com.bank.server.mapper.CustomerResponseDtoMapper;
+import com.bank.server.service.AccountService;
 import com.bank.server.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/customers")
 @RequiredArgsConstructor
@@ -26,6 +28,8 @@ public class CustomerController {
     private final CustomerRequestDtoMapper customerRequestDtoMapper;
     private final AccountRequestDtoMapper accountRequestDtoMapper;
     private final CustomerService customerService;
+
+    private final AccountService accountService;
 
     @GetMapping
     public List<CustomerResponseDto> findAll() {
@@ -51,6 +55,16 @@ public class CustomerController {
                 .map(customerResponseDtoMapper::convertToDto);
     }
 
+
+    // использую такой кривой меппинг, потому что много менять на фронте
+    @DeleteMapping("/{customerId}/account/{accountId}")
+    public void deleteById (
+            @PathVariable (name = "customerId") Long customerId,
+            @PathVariable (name = "accountId") Long accountId
+    ) {
+        accountService.deleteById(accountId);
+    }
+
     @PostMapping
     public Customer create(@Valid @RequestBody CustomerRequestDto customerDto) {
         Customer customer = customerRequestDtoMapper.convertToEntity(customerDto);
@@ -62,7 +76,7 @@ public class CustomerController {
         customerService.deleteById(id);
     }
 
-    @PostMapping("/{id}/accounts")
+    @PostMapping("/{id}/account")
     public Account createAccount (
             @Valid @RequestBody AccountRequestDto accountRequestDto,
             @PathVariable (name = "id") Long id

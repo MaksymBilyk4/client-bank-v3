@@ -20,14 +20,16 @@ export const getCustomers = () =>
         }
     }
 
-export const createCustomer = (name: string, email: string, age: number) =>
+export const createCustomer = (name: string, email: string, age: number, password: string, phoneNumber: string) =>
     async (dispatch: Dispatch<CustomerAction>) => {
         try {
             dispatch({type: CustomerActionTypes.CUSTOMER_REQUEST});
             const response = await axios.post(`${process.env.REACT_APP_API_URL}customers`, {
                 name,
                 email,
-                age
+                age,
+                password,
+                phoneNumber
             });
             console.log(response);
             dispatch({type: CustomerActionTypes.CREATE_CUSTOMER_SUCCESS});
@@ -54,7 +56,7 @@ export const deleteCustomer = (id: number) =>
         }
     }
 
-export const updateCustomer = (id: number | undefined, name: string | undefined, email: string | undefined, age: number | undefined, accounts: Account[] | []) =>
+export const updateCustomer = (id: number | undefined, name: string | undefined, email: string | undefined, age: number | undefined, accounts: Account[] | [], password: string | undefined, phoneNumber: string | undefined) =>
     async (dispatch: Dispatch<CustomerAction>) => {
         try {
             dispatch({type: CustomerActionTypes.CUSTOMER_REQUEST});
@@ -64,6 +66,8 @@ export const updateCustomer = (id: number | undefined, name: string | undefined,
                 email,
                 age,
                 accounts,
+                password,
+                phoneNumber
             });
             console.log(response);
             dispatch({type: CustomerActionTypes.UPDATE_CUSTOMER_SUCCESS})

@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@CrossOrigin
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/employers")
@@ -24,14 +25,14 @@ public class EmployerController {
     private final EmployerRequestDtoMapper employerRequestDtoMapper;
 
     @GetMapping
-    public List<EmployerResponseDto> findAll () {
+    public List<EmployerResponseDto> findAll() {
         return employerService.findAll().stream()
                 .map(employerResponseDtoMapper::convertToDto)
                 .collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
-    public Optional<EmployerResponseDto> findById (
+    public Optional<EmployerResponseDto> findById(
             @PathVariable(name = "id") Long id
     ) {
         return employerService.findById(id)
@@ -39,12 +40,12 @@ public class EmployerController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteById (@PathVariable(name = "id") Long id) {
+    public void deleteById(@PathVariable(name = "id") Long id) {
         employerService.deleteById(id);
     }
 
     @PostMapping
-    public Employer create (
+    public Employer create(
             @Valid
             @RequestBody EmployerRequestDto employerRequestDto
     ) {
@@ -53,7 +54,7 @@ public class EmployerController {
     }
 
     @PutMapping
-    public Employer update (
+    public Employer update(
             @Valid
             @RequestBody EmployerRequestDto employerRequestDto
     ) {

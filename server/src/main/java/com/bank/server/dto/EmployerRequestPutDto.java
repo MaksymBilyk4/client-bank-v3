@@ -1,6 +1,5 @@
 package com.bank.server.dto;
 
-import com.bank.server.entity.Customer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,7 +15,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class EmployerRequestDto {
+public class EmployerRequestPutDto {
     @Min(1)
     private Long id;
 
@@ -28,12 +27,15 @@ public class EmployerRequestDto {
     @NotNull
     private String address;
 
+    private Set<Long> customers = new HashSet<>();
+
     @Override
     public String toString() {
         return "EmployerRequestDto{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
+                ", customers=" + customers +
                 '}';
     }
 }

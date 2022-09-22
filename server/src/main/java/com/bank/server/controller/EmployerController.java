@@ -1,9 +1,11 @@
 package com.bank.server.controller;
 
 import com.bank.server.dto.EmployerRequestDto;
+import com.bank.server.dto.EmployerRequestPutDto;
 import com.bank.server.dto.EmployerResponseDto;
 import com.bank.server.entity.Employer;
 import com.bank.server.mapper.EmployerRequestDtoMapper;
+import com.bank.server.mapper.EmployerRequestPutDtoMapper;
 import com.bank.server.mapper.EmployerResponseDtoMapper;
 import com.bank.server.service.EmployerService;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +25,7 @@ public class EmployerController {
     private final EmployerService employerService;
     private final EmployerResponseDtoMapper employerResponseDtoMapper;
     private final EmployerRequestDtoMapper employerRequestDtoMapper;
+    private final EmployerRequestPutDtoMapper employerRequestPutDtoMapper;
 
     @GetMapping
     public List<EmployerResponseDto> findAll() {
@@ -56,9 +59,9 @@ public class EmployerController {
     @PutMapping
     public Employer update(
             @Valid
-            @RequestBody EmployerRequestDto employerRequestDto
+            @RequestBody EmployerRequestPutDto employerRequestDto
     ) {
-        Employer employer = employerRequestDtoMapper.convertToEntity(employerRequestDto);
+        Employer employer = employerRequestPutDtoMapper.convertToEntity(employerRequestDto);
         return employerService.update(employer);
     }
 }

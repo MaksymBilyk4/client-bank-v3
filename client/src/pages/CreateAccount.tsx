@@ -76,7 +76,7 @@ const CreateAccount: FC = () => {
                     </Select>
                 </Form.Item>
 
-                <Form.Item label={"Balance"} name="balance" rules={[rules.required('Please input balnce')]}>
+                <Form.Item label={"Balance"} name="balance" rules={[rules.required('Please input balance')]}>
                     <Input
                         value={balance}
                         type={"number"}

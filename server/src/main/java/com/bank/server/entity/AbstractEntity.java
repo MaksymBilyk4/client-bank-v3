@@ -14,16 +14,18 @@ import static javax.persistence.TemporalType.TIMESTAMP;
 @Getter
 @Setter
 @MappedSuperclass
-@EntityListeners(AuditingEntityListener.class)
+@EntityListeners({AuditingEntityListener.class})
 public class AbstractEntity {
     @Id
     @GeneratedValue
     private Long id;
 
+    @Column(name = "createdDate", insertable = true, updatable = false)
     @CreatedDate
     @Temporal(TIMESTAMP)
     protected Date createdDate;
 
+    @Column(name = "lastModifiedDate", insertable = false, updatable = true)
     @LastModifiedBy
     @Temporal(TIMESTAMP)
     protected Date lastModifiedDate;

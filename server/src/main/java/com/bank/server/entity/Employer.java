@@ -23,12 +23,12 @@ public class Employer extends AbstractEntity{
     private String name;
     private String address;
 
-    @ManyToMany(mappedBy = "employers", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "employers", cascade = CascadeType.MERGE)
     @JsonIgnore
     private Set<Customer> customers = new HashSet<>();
 
     public void addCustomer (Customer customer) {
-        this.customers.add(customer);
+        customers.add(customer);
         customer.getEmployers().add(this);
     }
 

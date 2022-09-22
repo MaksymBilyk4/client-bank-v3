@@ -46,5 +46,12 @@ export const customerDataColumn = [
                     <NavLink style={{color: "#fff"}} to={DELETE_CUSTOMER_ROUTE}>Delete customer</NavLink>
                 </Button>
             </Space>
-    }
+    },
+    {
+        title: "Employers IDs",
+        dataIndex: "employers",
+        key: "employers",
+        render: (employers) => <p style={{fontWeight: "bold"}} className={"table-font"}>{String(employers)}</p>,
+        width: "50%"
+    },
 ];

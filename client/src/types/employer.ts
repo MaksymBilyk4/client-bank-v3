@@ -2,6 +2,7 @@ export interface Employer {
     id: number,
     name: string,
     address: string,
+    customers: number[],
 }
 
 export interface EmployerState {

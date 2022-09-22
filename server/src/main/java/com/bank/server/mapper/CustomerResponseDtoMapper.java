@@ -22,7 +22,7 @@ public class CustomerResponseDtoMapper extends DtoMapperFacade<Customer, Custome
         for (Employer employer : entity.getEmployers()) {
             dto.getEmployersIds().add(employer.getId());
         }
-        dto.setCreationDate(entity.getCreatedDate());
+        dto.setCreatedDate(entity.getCreatedDate());
         entity.setPassword(dto.getPassword());
     }
 

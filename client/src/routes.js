@@ -1,9 +1,9 @@
 import {
     CREATE_ACCOUNT_ROUTE,
-    CREATE_CUSTOMER_ROUTE, DELETE_ACCOUNT_ROUTE,
-    DELETE_CUSTOMER_ROUTE,
+    CREATE_CUSTOMER_ROUTE, CREATE_EMPLOYER_ROUTE, DELETE_ACCOUNT_ROUTE,
+    DELETE_CUSTOMER_ROUTE, DELETE_EMPLOYER_ROUTE,
     HOME_ROUTE, TRANSFER_MONEY_ROUTE, UP_MONEY_ROUTE,
-    UPDATE_CUSTOMER_ROUTE, WITHDRAW_MONEY_ROUTE
+    UPDATE_CUSTOMER_ROUTE, UPDATE_EMPLOYER_ROUTE, WITHDRAW_MONEY_ROUTE
 } from "./utils/constants";
 import Home from "./pages/Home";
 import CreateCustomer from "./pages/CreateCustomer";
@@ -14,6 +14,9 @@ import DeleteAccount from "./pages/DeleteAccount";
 import TransferMoney from "./pages/TransferMoney";
 import UpMoney from "./pages/UpMoney";
 import WithdrawMoney from "./pages/WithdrawMoney";
+import CreateEmployer from "./pages/CreateEmployer";
+import DeleteEmployer from "./pages/DeleteEmployer";
+import UpdateEmployer from "./pages/UpdateEmployer";
 
 export const publicRoutes = [
     {
@@ -51,5 +54,17 @@ export const publicRoutes = [
     {
         path: WITHDRAW_MONEY_ROUTE,
         Component: WithdrawMoney,
+    },
+    {
+        path: CREATE_EMPLOYER_ROUTE,
+        Component: CreateEmployer,
+    },
+    {
+        path: DELETE_EMPLOYER_ROUTE,
+        Component: DeleteEmployer,
+    },
+    {
+        path: UPDATE_EMPLOYER_ROUTE,
+        Component: UpdateEmployer,
     }
 ];

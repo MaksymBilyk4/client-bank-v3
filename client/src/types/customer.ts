@@ -7,7 +7,8 @@ export interface Customer {
     age: number,
     accounts: Account[],
     phoneNumber: string,
-    password: string
+    password: string,
+    employers: number[],
 }
 
 export interface CustomerState {

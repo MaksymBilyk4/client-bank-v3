@@ -1,60 +1,59 @@
 package com.bank.server.dto;
 
-import com.bank.server.utils.CustomDateSerializer;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-public class CustomerResponseDto {
+@NoArgsConstructor
+public class CustomerRequestPutDto {
+    @Min(1)
     private Long id;
 
+    @NotNull
+    @Size(min = 2, message = "Customer`s name should have at least 2 characters")
     private String name;
 
+    @Min(18)
+    @NotNull
     private Integer age;
 
+    @Email
+//    @Pattern(regexp = "^(.+)@(\\\\S+)$")
+    @NotNull
     private String email;
 
+    //    @Pattern(regexp = "(\\+38|0)[0-9]{9}")
+    @NotNull
     private String phoneNumber;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @NotNull
     private String password;
 
-    @JsonSerialize(using = CustomDateSerializer.class)
-    private Date createdDate;
-
-    @JsonSerialize(using = CustomDateSerializer.class)
-    private Date lastModifiedDate;
-
-    @JsonProperty("accounts")
-    private Set<Long> accountsIds = new HashSet<>();
-
-    @JsonProperty("employers")
-    private Set<Long> employersIds = new HashSet<>();
+//    private Set<Long> employers = new HashSet<>();
 
     @Override
     public String toString() {
-        return "CustomerResponseDto{" +
+        return "CustomerRequestPutDto{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", age=" + age +
                 ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", password='" + password + '\'' +
-                ", creationDate=" + createdDate +
-                ", lastModifiedDate=" + lastModifiedDate +
-                ", accounts=" + accountsIds +
-                ", employersIds=" + employersIds +
+//                ", employersIds=" + employers +
                 '}';
     }
 }

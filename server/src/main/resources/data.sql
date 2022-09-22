@@ -17,6 +17,5 @@ values (1, 'Work 1', 'Kyiv'),
 
 insert into customers_employers (customer_id, employer_id)
 values (1, 1),
-       (2, 1),
        (3, 4),
        (1, 2);

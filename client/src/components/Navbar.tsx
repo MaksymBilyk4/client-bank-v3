@@ -1,8 +1,9 @@
 import {Menu, Row} from "antd";
 import {
+    BankOutlined,
     DeleteOutlined, DownloadOutlined,
     FolderAddOutlined,
-    HomeOutlined,
+    HomeOutlined, PlusOutlined, ReloadOutlined,
     SolutionOutlined,
     TeamOutlined, TransactionOutlined, UploadOutlined,
     UserAddOutlined,
@@ -12,10 +13,10 @@ import {
 import {NavLink} from "react-router-dom";
 import {
     CREATE_ACCOUNT_ROUTE,
-    CREATE_CUSTOMER_ROUTE, DELETE_ACCOUNT_ROUTE,
-    DELETE_CUSTOMER_ROUTE,
+    CREATE_CUSTOMER_ROUTE, CREATE_EMPLOYER_ROUTE, DELETE_ACCOUNT_ROUTE,
+    DELETE_CUSTOMER_ROUTE, DELETE_EMPLOYER_ROUTE,
     HOME_ROUTE, TRANSFER_MONEY_ROUTE, UP_MONEY_ROUTE,
-    UPDATE_CUSTOMER_ROUTE, WITHDRAW_MONEY_ROUTE
+    UPDATE_CUSTOMER_ROUTE, UPDATE_EMPLOYER_ROUTE, WITHDRAW_MONEY_ROUTE
 } from "../utils/constants";
 import {FC} from "react";
 
@@ -69,6 +70,17 @@ const Navbar: FC = () => {
                                     <NavLink to={TRANSFER_MONEY_ROUTE}>Transfer money</NavLink>
                                 </Menu.Item>
                             </Menu.ItemGroup>
+                        </SubMenu>
+                        <SubMenu title={"Employers"} key={"employers"} icon={<BankOutlined/>}>
+                            <Menu.Item key="employers" icon={<PlusOutlined/>}>
+                                <NavLink to={CREATE_EMPLOYER_ROUTE}>Create employer</NavLink>
+                            </Menu.Item>
+                            <Menu.Item key="deleteEmployers" icon={<DeleteOutlined />}>
+                                <NavLink to={DELETE_EMPLOYER_ROUTE}>Delete employer</NavLink>
+                            </Menu.Item>
+                            <Menu.Item key="updateEmployers" icon={<ReloadOutlined/>}>
+                                <NavLink to={UPDATE_EMPLOYER_ROUTE}>Update employer (здесь можно добавить запись в таблицу customers_employers)</NavLink>
+                            </Menu.Item>
                         </SubMenu>
                     </Menu>
                 </Row>

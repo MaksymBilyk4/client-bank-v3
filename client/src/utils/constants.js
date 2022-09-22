@@ -7,3 +7,6 @@ export const DELETE_ACCOUNT_ROUTE = "/deleteAccount";
 export const UP_MONEY_ROUTE = "/upMoney";
 export const WITHDRAW_MONEY_ROUTE = "/withdrawMoney";
 export const TRANSFER_MONEY_ROUTE = "/transferMoney";
+export const CREATE_EMPLOYER_ROUTE = "/createEmployer";
+export const DELETE_EMPLOYER_ROUTE = "/deleteEmployer"
+export const UPDATE_EMPLOYER_ROUTE = "/updateEmployer"

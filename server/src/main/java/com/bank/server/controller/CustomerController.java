@@ -2,11 +2,13 @@ package com.bank.server.controller;
 
 import com.bank.server.dto.AccountRequestDto;
 import com.bank.server.dto.CustomerRequestDto;
+import com.bank.server.dto.CustomerRequestPutDto;
 import com.bank.server.dto.CustomerResponseDto;
 import com.bank.server.entity.Account;
 import com.bank.server.entity.Customer;
 import com.bank.server.mapper.AccountRequestDtoMapper;
 import com.bank.server.mapper.CustomerRequestDtoMapper;
+import com.bank.server.mapper.CustomerRequestPutDtoMapper;
 import com.bank.server.mapper.CustomerResponseDtoMapper;
 import com.bank.server.service.AccountService;
 import com.bank.server.service.CustomerService;
@@ -26,6 +28,8 @@ public class CustomerController {
 
     private final CustomerResponseDtoMapper customerResponseDtoMapper;
     private final CustomerRequestDtoMapper customerRequestDtoMapper;
+
+    private final CustomerRequestPutDtoMapper customerRequestPutDtoMapper;
     private final AccountRequestDtoMapper accountRequestDtoMapper;
     private final CustomerService customerService;
 
@@ -86,8 +90,11 @@ public class CustomerController {
     }
 
     @PutMapping
-    public Customer update (@Valid @RequestBody CustomerRequestDto customerDto) {
-        Customer customer = customerRequestDtoMapper.convertToEntity(customerDto);
+    public Customer update (
+            @Valid
+            @RequestBody CustomerRequestPutDto customerRequestPutDto
+    ) {
+        Customer customer = customerRequestPutDtoMapper.convertToEntity(customerRequestPutDto);
         return customerService.update(customer);
     }
 }

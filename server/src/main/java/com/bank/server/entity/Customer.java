@@ -26,7 +26,7 @@ public class Customer extends AbstractEntity{
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private Set<Account> accounts = new LinkedHashSet<>();
 
     @ManyToMany(cascade = CascadeType.ALL)
